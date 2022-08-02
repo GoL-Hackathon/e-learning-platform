@@ -1,5 +1,7 @@
+from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
+from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateResponseMixin, View
@@ -7,7 +9,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import ModuleFormSet
-from .models import Course
+from .models import Content, Course, Module
 
 # Create your views here.
 '''
@@ -111,4 +113,102 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
                                         'formset': formset})
 
 
-    
+# allows you to create and update different models' contents
+class ContentCreateUpdateView(TemplateResponseMixin, View):
+    module = None
+    model = None
+    obj = None
+    template_name = 'courses/manage/content/form.html'
+
+
+    '''
+    Check that the given model name is one of the four
+    content models: Text, Video, Image, or File. Then use Django's apps
+    module to obtain the actual class for the given model name. If the given
+    model name is not one of the valid ones, return None.
+    '''
+    def get_model(self, model_name):
+        if model_name in ['text', 'video', 'image', 'file']:
+            return apps.get_model(app_label='courses',
+                                    model_name=model_name)
+        return None
+
+    '''
+    You build a dynamic form using the modelform_factory() function of the form's framework.
+    use the exclude parameter to specify the common fields to exclude from the form and let all other
+    attributes be included automatically
+    '''
+    def get_form(self, model, *args, **kwargs):
+        Form = modelform_factory(model, exclude={'owner',
+                                                'order',
+                                                'created',
+                                                'updated'})
+        return Form( *args, **kwargs)
+
+    '''
+    It receives the following URL parameters and stores the
+    corresponding module, model, and content object as class attributes
+    '''
+    def dispatch(self, request, module_id, model_name, id=None):
+        self.module = get_object_or_404(Module,
+                                        id=module_id,
+                                        course__owner=request.user)
+
+        self.model = self.get_model(model_name)
+        if id:
+            self.obj = get_object_or_404(self.model, 
+                                        id=id,
+                                        owner=request.user)  
+        return super().dispatch(request, module_id, model_name, id)  
+
+
+    '''
+    Executed when a GET request is received. You build the model
+    form for the Text, Video, Image, or File instance that is being updated.
+    Otherwise, you pass no instance to create a new object, since self.obj
+    is None if no ID is provided.
+    '''
+    def get(self, request, module_id, id=None):
+        form = self.get_form(self.model, instance=self.obj)
+        return self.render_to_response({'form': form,
+                                        'object': self.obj})
+
+    '''
+    Executed when a POST request is received. You build the model
+    form, passing any submitted data and files to it. Then, you validate it. If the
+    form is valid, you create a new object and assign request.user as its owner
+    before saving it to the database. You check for the id parameter. If no ID is
+    provided, you know the user is creating a new object instead of updating an
+    existing one. If this is a new object, you create a Content object for the given
+    module and associate the new content with it.
+    '''
+    def post(self, request, module_id, model_name, id=None):   
+        form = self.get_form(self.model,
+                                instance=self.obj,
+                                data=request.POST,
+                                files=request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.owner = request.user
+            obj.save()
+
+            if not id:
+                # new content
+                Content.objects.create(module=self.module, item=obj)
+            return redirect('module_content_list', self.module.id)
+
+        return self.render_to_response({'form': form,
+                                        'object': self.obj})
+
+
+# Retrieves the Content object with the given ID. It deletes the related Text, Video, Image, or File object
+class ContentDeleteView(View):
+
+    def post(self, request, id):
+        content = get_object_or_404(Content,
+                                    id=id,
+                                    module__course__owner=request.user)
+        module = content.module
+        content.item.delete()
+        content.delete()
+        return redirect('module_content_list', module.id)                 
