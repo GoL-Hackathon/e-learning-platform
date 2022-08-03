@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "==3.2.10"
 pillow = "*"
 python-decouple = "*"
 psycopg2 = "*"
+django-braces = "*"
 
 [dev-packages]
 
