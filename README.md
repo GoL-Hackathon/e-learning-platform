@@ -1,6 +1,10 @@
 # E-Learning Application
  - This is an e-learning platform which provides *content management system (CMS)*.
- - The application is built with Python(Django), HTML, CSS and JavaScript.
+ 
+## Technologies used
+- The application is built with Python(Django), HTML, CSS and JavaScript(JQuery).
+- It uses class-based views Mixins. They help in working with groups and permissions to restrict access to your views.
+- Also, we're using formsets to manage course modules.
 
 ## Installation
 - Fork the project to your account then clone it.
@@ -9,6 +13,8 @@
 - Refer to the `.env example` file for more information on PostgreSQL and Braintree configurations for the project.
 
 ## Features
+- A user(tutor) can login and post a course. 
+    - The course is divided into modules.  
 
 <!-- ![alt text for screen readers](./static/images/search.png "Search Module"). -->
 
