@@ -1,30 +1,53 @@
 {% extends "base.html" %}
 
-{% block title %}My courses{% endblock %}
+{% block title %}
+
+{% if subject %}
+    {{ subject.title }} courses
+{% else %}
+    All courses
+{% endif %}
+
+{% endblock %}
 
 {% block content %}
-    <h1>My courses</h1>
-
+    <h1>
+        {% if subject %}
+            {{ subject.title }} courses
+        {% else %}
+            All courses
+        {% endif %}
+    </h1>
+    <div class="contents">
+        <h3>Subjects</h3>
+        <ul id="modules">
+            <li {% if not subject %}class="selected"{% endif %}>
+                <a href="{% url "course_list" %}">All</a>
+            </li>
+            {% for s in subjects %}
+                <li {% if subject == s %}class="selected"{% endif %}>
+                    <a href="{% url "course_list_subject" s.slug %}">
+                        {{ s.title }}
+                    <br><span>{{ s.total_courses }} courses</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
     <div class="module">
-        {% for course in object_list %}
-            <div class="course-info">
-                <h3>{{ course.title }}</h3>
+        {% for course in courses %}
+            {% with subject=course.subject %}
+                <h3>
+                    <a href="{% url "course_detail" course.slug %}">
+                    {{ course.title }}
+                    </a>
+                </h3>
                 <p>
-                    <a href="{% url "course_edit" course.id %}">Edit</a>
-                    <a href="{% url "course_delete" course.id %}">Delete</a>
-                    <a href="{% url "course_module_update" course.id %}">Edit modules</a>
-                    {% if course.modules.count > 0 %}
-                        <a href="{% url "module_content_list" course.modules.first.id %}">
-                            Manage contents
-                        </a>
-                    {% endif %}
+                    <a href="{% url "course_list_subject" subject.slug %}">{{subject }}</a>.
+                        {{ course.total_modules }} modules.
+                        Instructor: {{ course.owner.get_full_name }}
                 </p>
-            </div>
-        {% empty %}
-            <p>You haven't created any courses yet.</p>
+            {% endwith %}
         {% endfor %}
-        <p>
-            <a href="{% url "course_create" %}" class="button">Create new course</a>
-        </p>
     </div>
 {% endblock %}
