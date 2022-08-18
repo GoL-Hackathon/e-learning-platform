@@ -9,6 +9,7 @@ pillow = "*"
 python-decouple = "*"
 psycopg2 = "*"
 django-braces = "*"
+django-embed-video = "*"
 
 [dev-packages]
 
