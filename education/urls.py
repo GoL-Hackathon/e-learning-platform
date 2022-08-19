@@ -50,7 +50,9 @@ urlpatterns = [
     path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
 
-    path('api/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('api/', include('courses.api.urls', namespace='api')),
+
+    path('api/v1/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 if settings.DEBUG:
