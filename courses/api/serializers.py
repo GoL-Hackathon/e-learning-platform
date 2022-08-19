@@ -9,14 +9,14 @@ class SubjectSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'slug')
 
 
-class ModuleSerilaizer(serializers.ModelSerializer):
+class ModuleSerialaizer(serializers.ModelSerializer):
     class Meta:
         model = Module
         fields = ['order', 'title', 'description']
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    modules = ModuleSerilaizer(many=True, read_only = True)
+    modules = ModuleSerialaizer(many=True, read_only = True)
     class Meta:
         model = Course
         fields = ['id', 'subject', 'title', 'slug', 'overview',
