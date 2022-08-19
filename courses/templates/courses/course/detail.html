@@ -10,8 +10,7 @@
         <div class="module">
             <h2>Overview</h2>
             <p>
-                <a href="{% url "course_list_subject" subject.slug %}">
-                    {{ subject.title }}</a>.
+                <a href="{% url "course_list_subject" subject.slug %}">{{ subject.title }}</a>.
                     {{ object.modules.count }} modules.
                     Instructor: {{ object.owner.get_full_name }}
             </p>
@@ -23,9 +22,7 @@
                     <input type="submit" value="Enroll now">
                 </form>
             {% else %}
-                <a href="{% url "student_registration" %}" class="button">
-                    Register to enroll
-                </a>
+                <a href="{% url "student_registration" %}" class="button">Register to enroll</a>
             {% endif %}
         </div>
     {% endwith %}
