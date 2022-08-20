@@ -48,4 +48,4 @@ class CourseWithContentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'subject', 'slug', 'overview', 'created', 'owener', 'modules']
+        fields = ['id', 'title', 'subject', 'slug', 'overview', 'created', 'owner', 'modules']
