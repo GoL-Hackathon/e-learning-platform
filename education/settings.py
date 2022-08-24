@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'memcache_status',
     'rest_framework',
     'drf_yasg',
+    'channels',
 
     'courses',
     'students',
@@ -88,6 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'education.wsgi.application'
+ASGI_APPLICATION = 'education.routing.application'
 
 
 # Database

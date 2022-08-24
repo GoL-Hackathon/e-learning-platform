@@ -15,6 +15,7 @@ django-memcache-status = "*"
 djangorestframework = "*"
 drf-yasg = "*"
 requests = "*"
+channels = "*"
 
 [dev-packages]
 
