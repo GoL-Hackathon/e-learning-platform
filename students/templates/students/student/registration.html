@@ -13,5 +13,6 @@
             {% csrf_token %}
             <p><input type="submit" value="Create my account"></p>
         </form>
+        <p>Already signed up? <a href="{% url 'login' %}">Log in</a> here.</p>
     </div>
 {% endblock %}
