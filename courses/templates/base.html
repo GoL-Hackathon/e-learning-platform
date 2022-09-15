@@ -14,7 +14,10 @@
         {% if request.user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Sign out</a></li>
         {% else %}
-            <li><a href="{% url 'login' %}">Sign in</a></li>
+            <li>
+                <a style="padding-right: 2rem;" href="{% url 'login' %}">Sign in</a> 
+                <a href="{% url 'student_registration' %}">Sign Up</a>
+            </li>
         {% endif %}
         </ul>
     </div>

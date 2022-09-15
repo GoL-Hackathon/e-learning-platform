@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}My courses{% endblock %}
+{% block title %}
+    My courses
+{% endblock %}
 
 {% block content %}
-    <h1>My courses</h1>
+    <h1>Hi {{user.username}}. Here are your enrolled courses</h1>
     <div class="module">
         {% for course in object_list %}
             <div class="course-info">
