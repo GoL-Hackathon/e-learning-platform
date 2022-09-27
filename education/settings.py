@@ -46,11 +46,9 @@ INSTALLED_APPS = [
     'memcache_status',
     'rest_framework',
     'drf_yasg',
-    'channels',
 
     'courses',
     'students',
-    'chat',
 ]
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
@@ -89,7 +87,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'education.wsgi.application'
-ASGI_APPLICATION = 'education.routing.application'
 
 
 # Database
