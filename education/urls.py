@@ -49,6 +49,7 @@ urlpatterns = [
 
     path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
+    path('landing/', include('landing.urls')),
 
 
     path('api/', include('courses.api.urls', namespace='api')),
