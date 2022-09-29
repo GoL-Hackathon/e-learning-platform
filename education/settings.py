@@ -42,34 +42,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'embed_video',
-
-
     'courses',
     'students',
-    'landing'
-    
-    'rest_framework',
-    'landing',
     'landingpage',
-    'courses',
-    'students',
-    'bootstrap',
+    
+    'embed_video',
+    'rest_framework',
+    'bootstrap4',
     'fontawesome',
 
 ]
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.jangoModelPermissionsOrAnonReadOnly'
-#     ]
-# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
