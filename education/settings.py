@@ -44,9 +44,19 @@ INSTALLED_APPS = [
 
     'embed_video',
 
+
     'courses',
     'students',
     'landing'
+    
+    'rest_framework',
+    'landing',
+    'landingpage',
+    'courses',
+    'students',
+    'bootstrap',
+    'fontawesome',
+
 ]
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
@@ -149,3 +159,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGOUT_REDIRECT_URL = reverse_lazy('course_list')
+
