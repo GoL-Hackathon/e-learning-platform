@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'embed_video',
+
+
+    'courses',
+    'students',
+    'landing'
+    
     'rest_framework',
     'landing',
     'landingpage',
@@ -50,6 +56,7 @@ INSTALLED_APPS = [
     'students',
     'bootstrap',
     'fontawesome',
+
 ]
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
@@ -137,7 +144,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/courses/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
@@ -153,17 +160,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGOUT_REDIRECT_URL = reverse_lazy('course_list')
 
-
-# Cache settings
-
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60 * 15 # 15 minutes
-CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
-
-'''
-•Low-level cache API: Provides the highest granularity. Allows you to cache
-specific queries or calculations.
-•Template cache: Allows you to cache template fragments.
-•Per-view cache: Provides caching for individual views.
-•Per-site cache: The highest-level cache. It caches your entire site.
-'''

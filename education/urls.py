@@ -20,10 +20,6 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 
-from rest_framework import permissions
-
-
-
 urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -35,10 +31,9 @@ urlpatterns = [
     path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
     path('landing/', include('landing.urls')),
+
     path('landingpage/', include('landingpage.urls')),
-    
-
-
+   
     path('api/', include('courses.api.urls', namespace='api')),
 
 ]

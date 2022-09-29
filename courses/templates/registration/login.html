@@ -1,22 +1,60 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% load static %} 
 
-{% block title %}Log-in{% endblock %}
+{% block title %}Log-in{% endblock %} 
 
 {% block content %}
-  <h1>Log-in</h1>
-  <div class="module">
-    {% if form.errors %}
-      <p>Your username and password didn't match. Please try again.</p>
-    {% else %}
-      <p>Please, use the following form to log-in:</p>
-    {% endif %}
-    <div class="login-form">
-      <form action="{% url 'login' %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <p><input type="submit" value="Log-in"></p>
-      </form>
-    </div>
+<main>
+  <div class="container">
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="d-flex justify-content-center py-4">
+              <a href="{% url 'landing' %}" class="logo d-flex align-items-center w-auto">
+                <img src="{% static 'icons/favicon.png' %}" alt="favicon" />
+                <span class="d-none d-lg-block">Elimisha Africa</span>
+              </a>
+            </div>
+            <!-- End Logo -->
+
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">
+                    Login to Your Account
+                  </h5>
+                </div>
+                <div>
+                  {% if form.errors %}
+                  <p>
+                    Your username and password didn't match. Please try again.
+                  </p>
+                  {% else %}
+                  <p>Enter your username & password to login</p>
+                  {% endif %}
+
+                  <form action="{% url 'login' %}" method="post">
+                    {{ form.as_p }} {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <p><input type="submit" value="Log-in" /></p>
+                  </form>
+                  <p>
+                    Dont have an account? <a href="{% url 'student_registration' %}">Sign up</a>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
+</main>
+<!-- End #main -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
 {% endblock %}
