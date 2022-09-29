@@ -30,7 +30,6 @@ urlpatterns = [
 
     path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
-    path('landing/', include('landing.urls')),
 
     path('', include('landingpage.urls')),
    

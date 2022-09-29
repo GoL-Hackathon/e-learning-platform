@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     'courses',
     'students',
-    'landing',
     'landingpage',
     
     'embed_video',
