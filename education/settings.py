@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'embed_video',
-    'memcache_status',
-    'rest_framework',
-    'drf_yasg',
 
     'courses',
     'students',
@@ -152,23 +149,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGOUT_REDIRECT_URL = reverse_lazy('course_list')
-
-
-# Cache settings
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60 * 15 # 15 minutes
-CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
-
-'''
-•Low-level cache API: Provides the highest granularity. Allows you to cache
-specific queries or calculations.
-•Template cache: Allows you to cache template fragments.
-•Per-view cache: Provides caching for individual views.
-•Per-site cache: The highest-level cache. It caches your entire site.
-'''

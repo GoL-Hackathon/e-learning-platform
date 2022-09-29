@@ -332,107 +332,52 @@
 		<aside id="sidebar" class="sidebar">
 			<ul class="sidebar-nav" id="sidebar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'landing' %}">
+					<a class="nav-link" href="{% url 'course_list' %}">
 						<i class="bi bi-grid"></i>
 						<span>All Courses</span>
 					</a> </li
 				><!-- End Dashboard Nav -->
 
 				<li class="nav-item">
-					<a
-						class="nav-link collapsed"
-						data-bs-target="#components-nav"
-						data-bs-toggle="collapse"
-						href="#"
-					>
-						<i class="bi bi-menu-button-wide"></i><span>Learn JavaScript</span
-						><i class="bi bi-chevron-down ms-auto"></i>
+					<a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+						<i class="bi bi-menu-button-wide"></i><span>Learn JavaScript</span><i class="bi bi-chevron-down ms-auto"></i>
 					</a>
-					<ul
-						id="components-nav"
-						class="nav-content collapse"
-						data-bs-parent="#sidebar-nav"
-					>
-						<li>
-							<a href="components-alerts.html">
-								<i class="bi bi-circle"></i><span>JS Home</span>
-							</a>
+					<ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+						{% for s in subjects %}
+						<li {% if subject == s %}class="selected"{% endif %}>
+						  <a href="{% url "course_list_subject" s.slug %}">
+							{{ s.title }}
+							<br><span>{{ s.total_courses }} courses</span>
+						  </a>
 						</li>
-						<li>
-							<a href="components-accordion.html">
-								<i class="bi bi-circle"></i><span>JS Introduction</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-badges.html">
-								<i class="bi bi-circle"></i><span>JS Stetements</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-breadcrumbs.html">
-								<i class="bi bi-circle"></i><span>JS Syntax</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-buttons.html">
-								<i class="bi bi-circle"></i><span>JS Comments</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-cards.html">
-								<i class="bi bi-circle"></i><span>JS Variables</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-carousel.html">
-								<i class="bi bi-circle"></i><span>JS Objects</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-list-group.html">
-								<i class="bi bi-circle"></i><span>JS Strings</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-modal.html">
-								<i class="bi bi-circle"></i><span>JS Numbers</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-tabs.html">
-								<i class="bi bi-circle"></i><span>JS Arrays</span>
-							</a>
-						</li>
-						<li>
-							<a href="components-pagination.html">
-								<i class="bi bi-circle"></i><span>JS Debugging</span>
-							</a>
-						</li>
+					  {% endfor %}
 						
-						
-					</ul> </li
-				><!-- End Components Nav -->
+					</ul>
+				</li>
+				<!-- End Components Nav -->
 
+				{% for s in subjects %}
 				<li class="nav-item">
-					<a
-						class="nav-link collapsed"
-						data-bs-target="#forms-nav"
-						data-bs-toggle="collapse"
-						href="#"
-					>
-						<i class="bi bi-journal-text"></i><span>Learn HTML</span
-						><i class="bi bi-chevron-down ms-auto"></i>
+					<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+						<i class="bi bi-journal-text"></i>
+						<li {% if not subject %}class="selected"{% endif %}>
+							<a href="{% url 'course_list' %}">All</a>
+						  </li>
+						<span>{% if not subject %}class="selected" {{ s.title }} {% endif %}</span>
+						<i class="bi bi-chevron-down ms-auto">{{ s.title }}</i>
+						<span>{{ s.total_courses }} courses</span>
+						{% endfor %}
 					</a>
-					<ul
-						id="forms-nav"
-						class="nav-content collapse"
-						data-bs-parent="#sidebar-nav"
-					>
+					<ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+						{% for course in courses %}
+      						{% with subject=course.subject %}
 						<li>
-							<a href="forms-elements.html">
-								<i class="bi bi-circle"></i><span>HTML Introduction</span>
+							<a href="{% url 'course_detail' course.slug %}">
+								{{ course.title }}
 							</a>
 						</li>
+							{% endwith %}
+						{% endfor %}
 						<li>
 							<a href="forms-layouts.html">
 								<i class="bi bi-circle"></i><span>HTML Editors</span>

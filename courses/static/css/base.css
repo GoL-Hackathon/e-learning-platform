@@ -30,7 +30,7 @@ h1 {
 .module {
     padding:10px 20px;
     float:left;
-    width:600px;
+    width:600px; 
 }
 
 .module h3 {
@@ -49,7 +49,7 @@ h1 {
     background: #FFFFFF;
     overflow:auto;
     padding:10px 20px;
-    /* border-bottom:6px solid #4154f1; */
+    border-bottom:6px solid #4154f1;
 }
 
 #header .logo {
@@ -69,10 +69,15 @@ h1 {
 
 #header .menu {
     list-style:none;
-    float:right;
-    margin:0;
-    padding:0;
+    margin-right: 0px;
+    margin-left: auto;
+    padding-top: 10px;
 
+}
+#content {
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
 }
 
 .contents {
@@ -92,10 +97,10 @@ h1 {
 }
 
 .contents ul li {
-    margin:0 0 10px 0;
+    margin: 20px 0 10px 0;
     padding:4px 10px 10px;
-    overflow:auto;
-    cursor:move;
+    overflow: auto;
+    cursor: move;
 }
 
 .contents ul li.selected {
