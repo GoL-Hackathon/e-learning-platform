@@ -26,13 +26,13 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
 
-    path('', CourseListView.as_view(), name='course_list'),
+    path('courselist/', CourseListView.as_view(), name='course_list'),
 
     path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
     path('landing/', include('landing.urls')),
 
-    path('landingpage/', include('landingpage.urls')),
+    path('', include('landingpage.urls')),
    
     path('api/', include('courses.api.urls', namespace='api')),
 

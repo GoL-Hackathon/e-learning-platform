@@ -16,6 +16,8 @@ djangorestframework = "*"
 drf-yasg = "*"
 requests = "*"
 channels = "*"
+django-bootstrap4 = "*"
+fontawesome = "*"
 
 [dev-packages]
 

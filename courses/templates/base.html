@@ -42,11 +42,11 @@
 
         <ul class="d-flex flex-column align-items-end menu">
             {% if request.user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Sign out</a></li>
+                <li><a class="btn" href="{% url 'logout' %}">Sign out</a></li>
             {% else %}
                 <li>
-                    <a style="padding-right: 2rem;" href="{% url 'login' %}">Sign in</a> 
-                    <a href="{% url 'student_registration' %}">Sign Up</a>
+                    <a class="btn" style="padding-right: 2rem;" href="{% url 'login' %}">Sign in</a> 
+                    <a class="btn" href="{% url 'student_registration' %}">Sign Up</a>
                 </li>
             {% endif %}
         </ul>

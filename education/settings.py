@@ -42,19 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'embed_video',
-
-
     'courses',
     'students',
-    'landing'
-    
-    'rest_framework',
     'landing',
     'landingpage',
-    'courses',
-    'students',
-    'bootstrap',
+    
+    'embed_video',
+    'rest_framework',
+    'bootstrap4',
     'fontawesome',
 
 ]
