@@ -18,6 +18,7 @@ requests = "*"
 channels = "*"
 django-bootstrap4 = "*"
 fontawesome = "*"
+gunicorn = "*"
 
 [dev-packages]
 
