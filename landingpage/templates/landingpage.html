@@ -36,8 +36,8 @@
                         </ul>
 
                         <div class="register-login-area">
-                            <a href="#" class="btn">Register</a>
-                            <a href="index-login.html" class="btn active">Login</a>
+                            <a href="{% url 'student_registration' %}" class="btn">Register</a>
+                            <a href="{% url 'login' %}" class="btn active">Login</a>
                         </div>
                     </div>
                 </div>
@@ -46,13 +46,13 @@
     </div>
 </header>
 
-<section class="hero-area bg-img bg-overlay-2by5" style="background-image: url(/static/img/bg-img/bg11.jpg);">
+<section class="hero-area bg-img bg-overlay-2by5" style="background-image: url(https://images.pexels.com/photos/5905700/pexels-photo-5905700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="hero-content text-center">
                     <h2>Learn with the Best</h2>
-                    <a href="#" class="btn clever-btn">Get Started</a>
+                    <a href="{% url 'student_registration' %}" class="btn clever-btn">Get Started</a>
                 </div>
             </div>
         </div>
